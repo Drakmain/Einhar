@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembresComponent implements OnInit {
 
+  //Faire component user.
+  nick!: String;
+  avatar!: String;
+  joined_at!: Date;
+  roles!: String[];
+
   constructor() { }
 
   ngOnInit(): void {

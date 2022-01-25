@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 5000;
 
-app.get('/salons', (req, res) => {
+app.get('/', (req, res) => {
     res.send(process.env.TOKEN);
 });
 

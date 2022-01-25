@@ -9,6 +9,10 @@ import { SalonsComponent } from './salons/salons.component';
 import { MembresComponent } from './membres/membres.component';
 import { EmojisComponent } from './emojis/emojis.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ServeurComponent } from './serveur/serveur.component';
+import { EmojiComponent } from './emoji/emoji.component';
+import { MembreComponent } from './membre/membre.component';
+import { SalonComponent } from './salon/salon.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MembresComponent,
     EmojisComponent,
     LandingPageComponent,
+    ServeurComponent,
+    EmojiComponent,
+    MembreComponent,
+    SalonComponent,
   ],
   imports: [
     BrowserModule,
