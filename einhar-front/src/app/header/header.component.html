@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2F3136;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">
+            <img src="https://cdn.discordapp.com/avatars/875444482835886131/b01fbbba54334b19a06acd67f00eafa2.webp"
+                width="30" height="30" class="d-inline-block align-top rounded" alt="">
+            Einhar
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" routerLink="" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">Accueil</a>
+                <a class="nav-link" routerLink="/serveurs" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">Serveurs</a>
+                <a class="nav-link" routerLink="/salons" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">Salons</a>
+                <a class="nav-link" routerLink="/membres" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">Membres</a>
+                <a class="nav-link" routerLink="/emojis" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}">Emojis</a>
+            </div>
+        </div>
+        <a class="btn btn-outline-primary me-3"
+            href="https://discord.com/api/oauth2/authorize?client_id=875444482835886131&permissions=8&scope=bot"
+            role="button">Inviter
+            le
+            bot</a>
+        <!-- <div [innerHTML]="avatar_icon"></div> -->
+    </div>
+</nav>
