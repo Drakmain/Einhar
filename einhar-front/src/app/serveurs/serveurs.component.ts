@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-serveurs',
@@ -7,18 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServeursComponent implements OnInit {
 
-  id!: String;
-  type!: String;
-  position!: number;
-  name!: String;
-  topic!: String;
-  last_message_id!: String;
-  user_limit!: number;
-  message_count!: number;
+  guilds!: any;
+  guilds_length!: number;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    if (this.api.getIsLogged()) {
+      this.guilds = await this.api.getUserMeGuilds();
+    }
+
   }
 
 }

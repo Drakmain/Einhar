@@ -7,10 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmojiComponent implements OnInit {
 
-  id!: String;
-  name!: String;
-  user!: any;
-
   constructor() { }
 
   ngOnInit(): void {

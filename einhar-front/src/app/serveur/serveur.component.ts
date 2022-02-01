@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import * as internal from 'stream';
+import { Component, OnInit, Input } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-serveur',
@@ -8,17 +8,20 @@ import * as internal from 'stream';
 })
 export class ServeurComponent implements OnInit {
 
-  id!: String;
-  name!: String;
-  icon!: String;
-  memberCount!: number;
-  maximumMembers!: number;
-  ownerId!: String;
-  createdTimestamp!: Date; //console.log(createdTimestamp.toString());
+  @Input() guild: any;
+  guildMember!: any;
+  guildInfo !: any;
+  isAdmin: boolean = false;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    if (this.guild.permissions << 3 == -8) {
+      this.isAdmin = true;
+      //this.guildMember = await this.api.getUserGuildMember(this.guild.id);
+      //console.log(this.guildInfo);
+    }
+
   }
 
 }
