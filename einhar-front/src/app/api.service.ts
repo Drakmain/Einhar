@@ -10,6 +10,7 @@ export class ApiService {
   error_description!: string;
   isLogged: boolean = false;
   token!: string;
+  selectedServer!: string;
 
   constructor() { }
 
@@ -107,6 +108,14 @@ export class ApiService {
     );
 
     return member;
+  }
+
+  setSelectedServer(server_id: string) {
+    this.selectedServer = server_id;
+  }
+
+  getSelectedServer() {
+    return this.selectedServer;
   }
 
 }

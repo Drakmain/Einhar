@@ -5,5 +5,6 @@
 </div>
 
 <div *ngFor="let guild of guilds" class="container text-center my-3">
-    <app-serveur [guild]="guild"></app-serveur>
+    <app-serveur (click)="changeBorder(guild.id)" [isActiveBorder]="tabServerActiveBorder.get(guild.id)"
+        [guild]="guild"></app-serveur>
 </div>
