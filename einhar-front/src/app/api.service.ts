@@ -78,7 +78,7 @@ export class ApiService {
   }
 
   async getUserMeGuilds() {
-    const guilds = await axios.get(
+    const { data: guilds } = await axios.get(
       'https://discord.com/api/v8/users/@me/guilds',
       {
         headers: {
@@ -90,25 +90,13 @@ export class ApiService {
     return guilds;
   }
 
-  async getGuild(guild_id: string) {
-    const { data: guild } = await axios.get(
-      'https://discord.com/api/v8/guilds/' + guild_id.toString(),
-      {
-        headers: {
-          'Authorization': 'Bot ' + this.token,
-        },
-      }
-    );
-
-    return guild;
-  }
-
   slowAlert() {
     console.log("Oue");
   }
 
   async getUserGuildMember(guild_id: string) {
-    setTimeout(this.slowAlert, 200);
+    const rand = 100 * Math.floor(Math.random() * 4);
+    setTimeout(this.slowAlert, rand);
     const { data: member } = await axios.get(
       'https://discord.com/api/v8/users/@me/guilds/' + guild_id + '/member',
       {
