@@ -1,4 +1,4 @@
-<div class="card text-white bg-dark">
+<div [class.border-primary]="this.isActiveBorder == true" class="card text-white bg-dark">
     <h5 class="card-header">{{ guild.name }} <img
             src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.webp" width="30" class="rounded"
             height="30" alt="">

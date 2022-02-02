@@ -10,6 +10,9 @@ export class ServeursComponent implements OnInit {
 
   guilds!: any;
   guilds_length!: number;
+  tabServerActiveBorder = new Map<any, boolean>();
+  selectedServer!: string;
+
 
   constructor(private api: ApiService) { }
 
@@ -18,6 +21,34 @@ export class ServeursComponent implements OnInit {
       this.guilds = await this.api.getUserMeGuilds();
     }
 
+    this.selectedServer = this.api.getSelectedServer();
+    console.log(this.selectedServer);
+    if (this.selectedServer === undefined) {
+      for (let i = 0; i < Object.keys(this.guilds).length; i++) {
+        this.tabServerActiveBorder.set(this.guilds[i].id, false);
+      }
+    }
+    else {
+      for (let i = 0; i < Object.keys(this.guilds).length; i++) {
+        if (this.guilds[i].id === this.selectedServer) {
+          this.tabServerActiveBorder.set(this.guilds[i].id, true);
+        }
+      }
+    }
+  }
+
+  changeBorder(id: any) {
+    for (let i = 0; i < Object.keys(this.guilds).length; i++) {
+      this.tabServerActiveBorder.set(this.guilds[i].id, false);
+    }
+
+    for (let i = 0; i < Object.keys(this.guilds).length; i++) {
+      if (this.guilds[i].id === id) {
+        this.tabServerActiveBorder.set(this.guilds[i].id, true);
+        this.selectedServer = this.guilds[i].id;
+      }
+    }
+    this.api.setSelectedServer(this.selectedServer);
   }
 
 }
