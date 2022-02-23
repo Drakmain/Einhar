@@ -11,7 +11,6 @@ export class ServeurComponent implements OnInit {
   @Input() guild: any;
   @Input() isActiveBorder!: any;
   guildMember!: any;
-  guildInfo !: any;
   isAdmin: boolean = false;
 
   constructor(private api: ApiService, private el: ElementRef) { }
@@ -19,7 +18,7 @@ export class ServeurComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     if (this.guild.permissions << 3 == -8) {
       this.isAdmin = true;
-      //this.guildMember = await this.api.getUserGuildMember(this.guild.id);
+      this.guildMember = await this.api.getUserGuildMember(this.guild.id);
     }
   }
 }
