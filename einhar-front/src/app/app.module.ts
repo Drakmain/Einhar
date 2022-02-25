@@ -14,6 +14,7 @@ import { EmojiComponent } from './emoji/emoji.component';
 import { MembreComponent } from './membre/membre.component';
 import { SalonComponent } from './salon/salon.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
+import { ServeurAdminComponent } from './serveur-admin/serveur-admin.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AuthentificationComponent } from './authentification/authentification.c
     MembreComponent,
     SalonComponent,
     AuthentificationComponent,
+    ServeurAdminComponent,
   ],
   imports: [
     BrowserModule,

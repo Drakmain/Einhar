@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { ApiService } from '../api.service';
 
 @Component({
@@ -8,44 +9,51 @@ import { ApiService } from '../api.service';
 })
 export class ServeursComponent implements OnInit {
 
-  guilds!: any;
+  guilds!: any[];
+  guilds_admin!: any[];
   guilds_length!: number;
   tabServerActiveBorder = new Map<any, boolean>();
   selectedServer!: string;
 
-
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
+    
     if (this.api.getIsLogged()) {
       this.guilds = await this.api.getUserMeGuilds();
-    }
 
-    this.selectedServer = this.api.getSelectedServer();
-    console.log(this.selectedServer);
-    if (this.selectedServer === undefined) {
-      for (let i = 0; i < Object.keys(this.guilds).length; i++) {
-        this.tabServerActiveBorder.set(this.guilds[i].id, false);
-      }
-    }
-    else {
-      for (let i = 0; i < Object.keys(this.guilds).length; i++) {
-        if (this.guilds[i].id === this.selectedServer) {
-          this.tabServerActiveBorder.set(this.guilds[i].id, true);
+      this.guilds_admin = this.guilds.filter(g => g.permissions << 3 == -8);
+      this.guilds = this.guilds.filter(g => g.permissions << 3 != -8);
+
+      this.selectedServer = this.api.getSelectedServer();
+
+      if (this.selectedServer === undefined) {
+        for (let i = 0; i < Object.keys(this.guilds_admin).length; i++) {
+          this.tabServerActiveBorder.set(this.guilds_admin[i].id, false);
         }
       }
+      else {
+        for (let i = 0; i < Object.keys(this.guilds_admin).length; i++) {
+          if (this.guilds_admin[i].id === this.selectedServer) {
+            this.tabServerActiveBorder.set(this.guilds_admin[i].id, true);
+          }
+        }
+      }
+    }
+    else{
+      this.router.navigate(['/']);
     }
   }
 
   changeBorder(id: any) {
-    for (let i = 0; i < Object.keys(this.guilds).length; i++) {
-      this.tabServerActiveBorder.set(this.guilds[i].id, false);
+    for (let i = 0; i < Object.keys(this.guilds_admin).length; i++) {
+      this.tabServerActiveBorder.set(this.guilds_admin[i].id, false);
     }
 
-    for (let i = 0; i < Object.keys(this.guilds).length; i++) {
-      if (this.guilds[i].id === id) {
-        this.tabServerActiveBorder.set(this.guilds[i].id, true);
-        this.selectedServer = this.guilds[i].id;
+    for (let i = 0; i < Object.keys(this.guilds_admin).length; i++) {
+      if (this.guilds_admin[i].id === id) {
+        this.tabServerActiveBorder.set(this.guilds_admin[i].id, true);
+        this.selectedServer = this.guilds_admin[i].id;
       }
     }
     this.api.setSelectedServer(this.selectedServer);
