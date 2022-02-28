@@ -135,6 +135,20 @@ export class ApiService {
     return member;
   }
 
+  async getEmojis(guild_id: string){
+    const { data: emojis } = await axios.get(
+      'http://localhost:5000/guild/emojis?guild_id=' + guild_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+
+    return emojis;
+  }
+
 }
+
 
 //test modif
