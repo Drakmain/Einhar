@@ -1,0 +1,16 @@
+<div [class.border-primary]="this.isActiveBorder == true" class="card text-white bg-dark">
+    <h5 class="card-header">
+        <img src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.webp" width="30" class="rounded"
+            height="30" alt=""> {{ guild.name }}
+    </h5>
+    <div class="card-body">
+        <p *ngIf="isBot == false && isAdmin == true" class="card-text">
+            Vous devez inviter le bot pour avoir plus d'informations sur ce serveur.
+        </p>
+        <p *ngIf="isBot == true && isAdmin == true" class="card-text">
+            -Nombre de membres : {{guildInfo.data.approximate_member_count}}/{{guildInfo.data.max_members}}
+            -Niveau de boost : {{guildInfo.data.premium_tier}}
+            -Langue : {{guildInfo.data.preferred_locale}}
+        </p>
+    </div>
+</div>

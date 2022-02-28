@@ -1,21 +1,29 @@
 <app-header></app-header>
-<h1 class="h1 text-center my-4">Einhar Services</h1>
 
-<div *ngIf="isLogged == false" class="text-center my-5">
+<div class="container my-4">
+    <h1 class="h1 text-center">Einhar Services</h1>
+</div>
+
+<div *ngIf="isLogged == false" class="container text-center my-4">
     <a class="btn btn-primary"
         href="https://discord.com/api/oauth2/authorize?client_id=875444482835886131&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Fauthentification&response_type=code&scope=identify%20connections%20guilds%20guilds.members.read"
         role="button">Connectez
         vous</a>
 </div>
 
-<div *ngIf="error != undefined" class="alert alert-primary mx-5" role="alert">
-    Erreur: {{ error }}, {{ error_description }}.
+<div class="container my-4">
+    <div *ngIf="error != undefined" class="alert alert-primary" role="alert">
+        Erreur: {{ error }}, {{ error_description }}.
+    </div>
 </div>
 
-<div class="my-4">
-    <p *ngIf="isLogged == false" class="text-center ">Pour acceder aux informations des serveurs vous devez avoir
-        les droits
-        administrateur.</p>
+<div class="container text-center my-4">
+    <a href="https://discord.com/api/oauth2/authorize?client_id=875444482835886131&permissions=8&scope=bot"
+        class="link-primary">Invitez le bot</a>
 </div>
 
-<!-- <p class="text-center">code : {{code}}, token: {{token}}</p> -->
+<div class="container text-center my-4">
+    <p *ngIf="isLogged == false">Pour acceder aux informations des serveurs vous devez avoir les
+        droits administrateur et le bot
+        Einhar doit y etre invité.</p>
+</div>

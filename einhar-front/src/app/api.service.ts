@@ -26,6 +26,14 @@ export class ApiService {
     return this.error_description;
   }
 
+  getSelectedServer() {
+    return this.selectedServer;
+  }
+
+  setSelectedServer(server_id: string) {
+    this.selectedServer = server_id;
+  }
+
   async authentification(code: any, error: string, error_description: string) {
 
     this.code = code;
@@ -78,6 +86,23 @@ export class ApiService {
     return user;
   }
 
+  async getGuild(guild_id: string) {
+    const guild = await axios.get(
+      'http://localhost:5000/guilds?guild_id=' + guild_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    ).catch(function (error) {
+      if (error.response) {
+        return error.response.status;
+      }
+    });
+    
+    return guild;
+  }
+
   async getUserMeGuilds() {
     const { data: guilds } = await axios.get(
       'https://discord.com/api/v8/users/@me/guilds',
@@ -108,14 +133,6 @@ export class ApiService {
     );
 
     return member;
-  }
-
-  setSelectedServer(server_id: string) {
-    this.selectedServer = server_id;
-  }
-
-  getSelectedServer() {
-    return this.selectedServer;
   }
 
 }

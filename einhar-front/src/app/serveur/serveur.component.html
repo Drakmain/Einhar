@@ -1,10 +1,6 @@
-<div [class.border-primary]="this.isActiveBorder == true" class="card text-white bg-dark">
-    <h5 class="card-header">{{ guild.name }} <img
-            src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.webp" width="30" class="rounded"
-            height="30" alt="">
-    </h5>
+<div class="card text-white bg-dark" style="width: 18rem;">
     <div class="card-body">
-        <p class="card-text">{{ guild.id }}</p>
-        <p class="card-text">Administrateur: {{ isAdmin }}</p>
+        <h5 class="card-title"><img src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.webp"
+                width="30" class="rounded" height="30" alt=""> {{ guild.name }}</h5>
     </div>
 </div>
