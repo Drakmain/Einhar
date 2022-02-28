@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-emojis',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./emojis.component.css']
 })
 export class EmojisComponent implements OnInit {
+   
+  emojis!: any;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.emojis = await this.api.getEmojis(this.api.selectedServer);
+    console.log(this.emojis);
+
   }
 
 }
+
+
