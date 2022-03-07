@@ -14,6 +14,8 @@
                 <div class="navbar-nav">
                     <a class="nav-link" routerLink="" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact: true}">Accueil</a>
+                    <a class="nav-link" routerLink="/connections" routerLinkActive="active"
+                        [class.disabled]="this.isLogged == false" [routerLinkActiveOptions]="{exact: true}">Connections</a>
                     <a class="nav-link" routerLink="/serveurs" routerLinkActive="active"
                         [class.disabled]="this.isLogged == false" [routerLinkActiveOptions]="{exact: true}">Serveurs</a>
                     <a class="nav-link" routerLink="/roles" routerLinkActive="active"

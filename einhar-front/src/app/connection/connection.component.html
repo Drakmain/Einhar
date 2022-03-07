@@ -1,0 +1,13 @@
+<div class="card text-white bg-dark title" style="width: 18rem;">
+    <h5 class="card-header">
+        <img src="{{logoConnectionDisplay}}" width="25" class="rounded" height="25" alt=""> {{
+        connection.type.charAt(0).toUpperCase() + connection.type.slice(1) }}
+    </h5>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Pseudo : {{ connection.name }}</li>
+            <li class="list-group-item">Verified : <img src="{{logoVerifiedDisplay}}" width="20" class="rounded"
+                    height="20" alt=""></li>
+        </ul>
+    </div>
+</div>

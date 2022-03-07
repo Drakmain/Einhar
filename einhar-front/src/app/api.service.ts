@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import axiosRetry from 'axios-retry';
 import { retry } from 'rxjs';
 
 @Injectable({
@@ -89,7 +88,7 @@ export class ApiService {
   }
 
   async getGuild(guild_id: string) {
-    const guilds = await axios.get(
+    const guild = await axios.get(
       'http://localhost:5000/guild?guild_id=' + guild_id,
       {
         headers: {
@@ -102,7 +101,7 @@ export class ApiService {
       }
     });
 
-    return guilds;
+    return guild;
   }
 
   async getGuildRoles(guild_id: string) {
@@ -131,8 +130,8 @@ export class ApiService {
         },
       }
     );
-
-    return members.data;
+    
+    return members;
   }
 
   async getUserMeGuilds() {
@@ -179,8 +178,20 @@ export class ApiService {
     return emojis;
   }
 
+  async getUserMeConnections() {
+    const { data: connections } = await axios.get(
+      'https://discord.com/api/v8/users/@me/connections',
+      {
+        headers: {
+          'Authorization': 'Bearer ' + this.token,
+        },
+      }
+    );
+    return connections;
+  }
+
   async getChannelMessages(channel_id: string) {
-    const { data: emojis } = await axios.get(
+    const { data: channelMessages } = await axios.get(
       'http://localhost:5000/channel/messages?channel_id=' + channel_id,
       {
         headers: {
@@ -189,11 +200,11 @@ export class ApiService {
       }
     );
 
-    return emojis;
+    return channelMessages;
   }
 
   async getUserMessages(guild_id: string, user_id: string) {
-    const { data: emojis } = await axios.get(
+    const { data: userMessages } = await axios.get(
       'http://localhost:5000/guild/user/messages?guild_id=' + guild_id + "&user_id=" + user_id,
       {
         headers: {
@@ -202,7 +213,7 @@ export class ApiService {
       }
     );
 
-    return emojis;
+    return userMessages;
   }
 
 }

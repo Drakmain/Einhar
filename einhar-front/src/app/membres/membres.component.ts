@@ -10,17 +10,20 @@ import { ApiService } from '../api.service';
 export class MembresComponent implements OnInit {
 
   selectedServer!: any;
+  members!: any;
 
   constructor(private api: ApiService, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+
     if (this.api.getIsLogged()) {
       this.selectedServer = this.api.getSelectedServer();
+      this.members = await this.api.getGuildMembers(this.selectedServer.id);
+      console.log("Membre " + this.members);
     }
     else {
       this.router.navigate(['/']);
     }
-
   }
 
 }
