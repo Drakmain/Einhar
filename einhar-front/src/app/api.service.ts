@@ -179,4 +179,16 @@ export class ApiService {
     return emojis;
   }
 
+  async getUserMeConnections() {
+    const { data: connections } = await axios.get(
+      'https://discord.com/api/v8/users/@me/connections',
+      {
+        headers: {
+          'Authorization': 'Bearer ' + this.token,
+        },
+      }
+    );
+
+    return connections;
+  }
 }
