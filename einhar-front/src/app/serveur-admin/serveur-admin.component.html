@@ -7,10 +7,15 @@
         <p *ngIf="isBot == false && isAdmin == true" class="card-text">
             Vous devez inviter le bot pour avoir plus d'informations sur ce serveur.
         </p>
-        <p *ngIf="isBot == true && isAdmin == true" class="card-text">
-            -Nombre de membres : {{guildInfo.data.approximate_member_count}}/{{guildInfo.data.max_members}}
-            -Niveau de boost : {{guildInfo.data.premium_tier}}
-            -Langue : {{guildInfo.data.preferred_locale}}
-        </p>
+        <ul *ngIf="isBot == true && isAdmin == true" class="list-group list-group-flush">
+            <li class="list-group-item">-Nombre de membres : {{guildInfo.data.approximate_member_count}}/{{guildInfo.data.max_members}}</li>
+            <li class="list-group-item">-Niveau de boost : {{guildInfo.data.premium_tier}}</li>
+            <li class="list-group-item">-Langue : {{guildInfo.data.preferred_locale}}</li>
+            <li class="list-group-item">-Region : {{guildInfo.data.region}}</li>
+        </ul>
+
+        <!-- <ul *ngIf="isBot == true && isAdmin == true" class="list-group list-group-flush">
+            <li class="list-group-item">-Surnom : {{guildMember.data.nick}}</li> 
+        </ul> -->
     </div>
 </div>

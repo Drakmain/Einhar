@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<div class="container text-center my-4">
+    <h1 class="h1">Roles</h1>
+</div>
+
+<app-selected-server [selectedServer]="selectedServer"></app-selected-server>
+
+<div class="container d-flex justify-content-center">
+    <div class="row row-cols-4">
+        <div *ngFor="let role of roles" class="container text-center my-3">
+            <app-role [role]="role"></app-role>
+        </div>
+    </div>
+</div>

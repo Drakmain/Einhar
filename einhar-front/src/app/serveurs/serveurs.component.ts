@@ -13,12 +13,12 @@ export class ServeursComponent implements OnInit {
   guilds_admin!: any[];
   guilds_length!: number;
   tabServerActiveBorder = new Map<any, boolean>();
-  selectedServer!: string;
+  selectedServer!: any;
 
   constructor(private api: ApiService, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
-    
+
     if (this.api.getIsLogged()) {
       this.guilds = await this.api.getUserMeGuilds();
 
@@ -34,13 +34,13 @@ export class ServeursComponent implements OnInit {
       }
       else {
         for (let i = 0; i < Object.keys(this.guilds_admin).length; i++) {
-          if (this.guilds_admin[i].id === this.selectedServer) {
+          if (this.guilds_admin[i].id === this.selectedServer.id) {
             this.tabServerActiveBorder.set(this.guilds_admin[i].id, true);
           }
         }
       }
     }
-    else{
+    else {
       this.router.navigate(['/']);
     }
   }
@@ -53,7 +53,7 @@ export class ServeursComponent implements OnInit {
     for (let i = 0; i < Object.keys(this.guilds_admin).length; i++) {
       if (this.guilds_admin[i].id === id) {
         this.tabServerActiveBorder.set(this.guilds_admin[i].id, true);
-        this.selectedServer = this.guilds_admin[i].id;
+        this.selectedServer = this.guilds_admin[i];
       }
     }
     this.api.setSelectedServer(this.selectedServer);
