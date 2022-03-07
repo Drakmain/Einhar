@@ -89,8 +89,8 @@ export class ApiService {
   }
 
   async getGuild(guild_id: string) {
-    const guild = await axios.get(
-      'http://localhost:5000/guilds?guild_id=' + guild_id,
+    const guilds = await axios.get(
+      'http://localhost:5000/guild?guild_id=' + guild_id,
       {
         headers: {
           'Content-Type': 'application/json'
@@ -102,12 +102,12 @@ export class ApiService {
       }
     });
 
-    return guild;
+    return guilds;
   }
 
   async getGuildRoles(guild_id: string) {
     const roles = await axios.get(
-      'http://localhost:5000/guilds/roles?guild_id=' + guild_id,
+      'http://localhost:5000/guild/roles?guild_id=' + guild_id,
       {
         headers: {
           'Content-Type': 'application/json'
@@ -124,7 +124,7 @@ export class ApiService {
 
   async getGuildMembers(guild_id: string) {
     const { data: members } = await axios.get(
-      'http://localhost:5000/guilds/members?guild_id=' + guild_id,
+      'http://localhost:5000/guild/members?guild_id=' + guild_id,
       {
         headers: {
           'Content-Type': 'application/json'

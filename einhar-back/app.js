@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
     res.status(400).send("Bad Request");
 });
 
-app.get('/guilds', async (req, res) => {
+app.get('/guild', async (req, res) => {
     const guild_id = req.query.guild_id;
 
     if (guild_id == undefined) {
