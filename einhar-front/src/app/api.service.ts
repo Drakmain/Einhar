@@ -178,6 +178,18 @@ export class ApiService {
     return emojis;
   }
 
+  async getUserMeConnections() {
+    const { data: connections } = await axios.get(
+      'https://discord.com/api/v8/users/@me/connections',
+      {
+        headers: {
+          'Authorization': 'Bearer ' + this.token,
+        },
+      }
+    );
+    return connections;
+  }
+
   async getChannelMessages(channel_id: string) {
     const { data: channelMessages } = await axios.get(
       'http://localhost:5000/channel/messages?channel_id=' + channel_id,

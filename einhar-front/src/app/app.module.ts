@@ -18,6 +18,8 @@ import { ServeurAdminComponent } from './serveur-admin/serveur-admin.component';
 import { RolesComponent } from './roles/roles.component';
 import { RoleComponent } from './role/role.component';
 import { SelectedServerComponent } from './selected-server/selected-server.component';
+import { ConnectionsComponent } from './connections/connections.component';
+import { ConnectionComponent } from './connection/connection.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { SelectedServerComponent } from './selected-server/selected-server.compo
     RolesComponent,
     RoleComponent,
     SelectedServerComponent,
+    ConnectionsComponent,
+    ConnectionComponent,
   ],
   imports: [
     BrowserModule,
