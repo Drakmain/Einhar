@@ -130,7 +130,7 @@ export class ApiService {
         },
       }
     );
-    
+
     return members;
   }
 
@@ -214,6 +214,19 @@ export class ApiService {
     );
 
     return userMessages;
+  }
+
+  async getGuildChannels(guild_id: string) {
+    const { data: channels } = await axios.get(
+      'http://localhost:5000/guild/channels?guild_id=' + guild_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+
+    return channels;
   }
 
 }

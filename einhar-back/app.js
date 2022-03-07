@@ -47,11 +47,11 @@ app.get('/guild', async (req, res) => {
 
         if (guildInfo.code == 50001) {
             res.status(401).send("Missing acces : " + guild_id);
-            console.log(getDate() + " Error: http://localhost:" + port + "/guilds Missing acces " + guild_id);
+            console.log(getDate() + " Error: http://localhost:" + port + "/guild Missing acces guild_id: " + guild_id);
         }
         else {
             res.status(200).send(guildInfo);
-            console.log(getDate() + " http://localhost:" + port + "/guilds OK " + guild_id);
+            console.log(getDate() + " http://localhost:" + port + "/guild OK guild_id: " + guild_id);
         }
     }
 });
@@ -74,7 +74,7 @@ app.get('/guild/members', async (req, res) => {
         guildMembers = await guildMembers.json();
 
         res.status(200).send(guildMembers);
-        console.log(getDate() + " http://localhost:" + port + "/guilds/members OK");
+        console.log(getDate() + " http://localhost:" + port + "/guilds/members OK guild_id: " + guild_id);
     }
 });
 
@@ -93,15 +93,13 @@ app.get('/message/create', async (req, res) => {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bot ' + process.env.BOT_TOKEN,
             },
-            body: JSON.stringify({
-                "content": "This is a message with components",
-            })
+            body: JSON.stringify({"content": content})
         });
 
         result = await result.json();
 
         res.status(200).send(result);
-        console.log(getDate() + " http://localhost:" + port + "/message/create OK");
+        console.log(getDate() + " http://localhost:" + port + "/message/create OK channel_id: " + channel_id +", content: " + content);
     }
 });
 
@@ -136,7 +134,7 @@ app.get('/message/edit', async (req, res) => {
         }
         else {
             res.status(200).send(result);
-            console.log(getDate() + " http://localhost:" + port + "/message/edit OK");
+            console.log(getDate() + " http://localhost:" + port + "/message/edit OK message_id: " + message_id + ", channel_id: " + channel_id + ", content: " + content);
         }
     }
 });
@@ -169,7 +167,7 @@ app.get('/message/delete', async (req, res) => {
         }
         else {
             res.status(200).send(result);
-            console.log(getDate() + " http://localhost:" + port + "/message/delete OK");
+            console.log(getDate() + " http://localhost:" + port + "/message/delete OK channel_id: " + channel_id + ", message_id" + message_id);
         }
     }
 });
@@ -192,7 +190,7 @@ app.get('/guild/roles', async (req, res) => {
         roles = await roles.json();
 
         res.status(200).send(roles);
-        console.log(getDate() + " http://localhost:" + port + "/guild/roles OK " + guild_id);
+        console.log(getDate() + " http://localhost:" + port + "/guild/roles OK guild_id: " + guild_id);
     }
 });
 
@@ -214,7 +212,7 @@ app.get('/guild/channels', async (req, res) => {
         guildChannels = await guildChannels.json();
 
         res.status(200).send(guildChannels);
-        console.log(getDate() + " http://localhost:" + port + "/guild/channels OK");
+        console.log(getDate() + " http://localhost:" + port + "/guild/channels OK guild_id: " + guild_id);
     }
 });
 
@@ -238,7 +236,7 @@ app.get('/channel/messages', async (req, res) => {
         console.log(channelMessages.filter(c => c.author.username == "Drakmain"));
 
         res.status(200).send(channelMessages);
-        console.log(getDate() + " http://localhost:" + port + "/channels/messages OK");
+        console.log(getDate() + " http://localhost:" + port + "/channels/messages OK channel_id: " + channel_id);
     }
 });
 
@@ -277,7 +275,7 @@ app.get('/guild/user/messages', async (req, res) => {
         }
 
         res.status(200).send(allChannelMessages);
-        console.log(getDate() + " http://localhost:" + port + "/guild/user/messages OK");
+        console.log(getDate() + " http://localhost:" + port + "/guild/user/messages OK user_id: " + user_id + ", guild_id: " + guild_id);
     }
 });
 
@@ -299,7 +297,7 @@ app.get('/guild/emojis', async (req, res) => {
         emojis = await emojis.json();
 
         res.status(200).send(emojis);
-        console.log(getDate() + " http://localhost:" + port + "/guild/emojis OK");
+        console.log(getDate() + " http://localhost:" + port + "/guild/emojis OK guild_id: " + guild_id);
     }
 });
 
