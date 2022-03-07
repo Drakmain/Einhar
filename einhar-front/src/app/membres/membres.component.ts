@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { ApiService } from '../api.service';
 
 @Component({
@@ -8,18 +9,21 @@ import { ApiService } from '../api.service';
 })
 export class MembresComponent implements OnInit {
 
-  //Faire component user.
+  selectedServer!: any;
   members!: any;
-  /*nick!: string;
-  avatar!: string;
-  joined_at!: Date;
-  roles!: string[];*/
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
-    this.members = await this.api.getGuildMembers(this.api.selectedServer);
-    console.log(this.members);
+
+    if (this.api.getIsLogged()) {
+      this.selectedServer = this.api.getSelectedServer();
+      this.members = await this.api.getGuildMembers(this.selectedServer.id);
+      console.log("Membre " + this.members);
+    }
+    else {
+      this.router.navigate(['/']);
+    }
   }
 
 }

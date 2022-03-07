@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { ApiService } from '../api.service';
 
 @Component({
@@ -7,17 +8,19 @@ import { ApiService } from '../api.service';
   styleUrls: ['./emojis.component.css']
 })
 export class EmojisComponent implements OnInit {
-   
-  emojis!: any;
 
-  constructor(private api: ApiService) { }
+  emojis!: any;
+  selectedServer!: any;
+
+  constructor(private api: ApiService, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
-    this.emojis = await this.api.getEmojis(this.api.selectedServer);
-    console.log(this.emojis);
-
+    if (this.api.getIsLogged()) {
+      this.selectedServer = this.api.getSelectedServer();
+      this.emojis = await this.api.getEmojis(this.selectedServer.id);
+    }
+    else {
+      this.router.navigate(['/']);
+    }
   }
-
 }
-
-

@@ -15,6 +15,9 @@ import { MembreComponent } from './membre/membre.component';
 import { SalonComponent } from './salon/salon.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { ServeurAdminComponent } from './serveur-admin/serveur-admin.component';
+import { RolesComponent } from './roles/roles.component';
+import { RoleComponent } from './role/role.component';
+import { SelectedServerComponent } from './selected-server/selected-server.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { ServeurAdminComponent } from './serveur-admin/serveur-admin.component';
     SalonComponent,
     AuthentificationComponent,
     ServeurAdminComponent,
+    RolesComponent,
+    RoleComponent,
+    SelectedServerComponent,
   ],
   imports: [
     BrowserModule,

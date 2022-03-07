@@ -4,8 +4,6 @@
     <h1 class="h1">Serveurs</h1>
 </div>
 
-<h2 class="text-center">Admin</h2>
-
 <div *ngFor="let guild of guilds_admin" class="container text-center my-3">
     <app-serveur-admin (click)="changeBorder(guild.id)" [isActiveBorder]="tabServerActiveBorder.get(guild.id)"
         [guild]="guild"></app-serveur-admin>

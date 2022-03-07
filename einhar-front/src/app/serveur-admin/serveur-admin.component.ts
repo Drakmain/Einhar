@@ -20,13 +20,16 @@ export class ServeurAdminComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     if (this.guild.permissions << 3 == -8) {
       this.isAdmin = true;
-      //this.guildMember = await this.api.getUserGuildMember(this.guild.id);
       this.guildInfo = await this.api.getGuild(this.guild.id);
+
+      //this.guildMember = await this.api.getUserGuildMember(this.guild.id);
 
       if (this.guildInfo != 401) {
         this.isBot = true;
       }
+
     }
+    
   }
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import { retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,8 @@ export class ApiService {
     return this.selectedServer;
   }
 
-  setSelectedServer(server_id: string) {
-    this.selectedServer = server_id;
+  setSelectedServer(server: any) {
+    this.selectedServer = server;
   }
 
   async authentification(code: any, error: string, error_description: string) {
@@ -88,7 +89,7 @@ export class ApiService {
 
   async getGuild(guild_id: string) {
     const guild = await axios.get(
-      'http://localhost:5000/guilds?guild_id=' + guild_id,
+      'http://localhost:5000/guild?guild_id=' + guild_id,
       {
         headers: {
           'Content-Type': 'application/json'
@@ -99,8 +100,38 @@ export class ApiService {
         return error.response.status;
       }
     });
-    
+
     return guild;
+  }
+
+  async getGuildRoles(guild_id: string) {
+    const roles = await axios.get(
+      'http://localhost:5000/guilds/roles?guild_id=' + guild_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    ).catch(function (error) {
+      if (error.response) {
+        return error.response.status;
+      }
+    });
+
+    return roles.data;
+  }
+
+  async getGuildMembers(guild_id: string) {
+    const { data: members } = await axios.get(
+      'http://localhost:5000/guild/members?guild_id=' + guild_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+    
+    return members;
   }
 
   async getUserMeGuilds() {
@@ -116,26 +147,25 @@ export class ApiService {
     return guilds;
   }
 
-  slowAlert() {
-    console.log("Oue");
-  }
-
   async getUserGuildMember(guild_id: string) {
-    const rand = 100 * Math.floor(Math.random() * 4);
-    setTimeout(this.slowAlert, rand);
-    const { data: member } = await axios.get(
+    const member = await axios.get(
       'https://discord.com/api/v8/users/@me/guilds/' + guild_id + '/member',
       {
         headers: {
           'Authorization': 'Bearer ' + this.token,
         },
       }
-    );
+    ).catch(function (error) {
+      if (error.response) {
+        console.log(error.response);
+        return error.response;
+      }
+    });
 
     return member;
   }
 
-  async getEmojis(guild_id: string){
+  async getEmojis(guild_id: string) {
     const { data: emojis } = await axios.get(
       'http://localhost:5000/guild/emojis?guild_id=' + guild_id,
       {
@@ -148,9 +178,9 @@ export class ApiService {
     return emojis;
   }
 
-  async getGuildMembers(guild_id: string) {
-    const { data: members } = await axios.get(
-      'http://localhost:5000/guilds/members?guild_id=' + guild_id,
+  async getChannelMessages(channel_id: string) {
+    const { data: channelMessages } = await axios.get(
+      'http://localhost:5000/channel/messages?channel_id=' + channel_id,
       {
         headers: {
           'Content-Type': 'application/json'
@@ -158,9 +188,20 @@ export class ApiService {
       }
     );
 
-    return members;
+    return channelMessages;
+  }
+
+  async getUserMessages(guild_id: string, user_id: string) {
+    const { data: userMessages } = await axios.get(
+      'http://localhost:5000/guild/user/messages?guild_id=' + guild_id + "&user_id=" + user_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+
+    return userMessages;
   }
 
 }
-
-

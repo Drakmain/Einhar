@@ -1,14 +1,15 @@
 <app-header></app-header>
 
-<h1 class="h1 text-center my-4">Membres</h1>
+<div class="container text-center my-4">
+    <h1 class="h1">Roles</h1>
+</div>
 
 <app-selected-server [selectedServer]="selectedServer"></app-selected-server>
 
 <div class="container d-flex justify-content-center">
     <div class="row row-cols-4">
-        <div *ngFor="let member of members" class="container text-center my-3">
-            <app-membre [member]="member"></app-membre>
+        <div *ngFor="let role of roles" class="container text-center my-3">
+            <app-role [role]="role"></app-role>
         </div>
     </div>
 </div>
-
