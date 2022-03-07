@@ -88,19 +88,6 @@ export class ApiService {
     return user;
   }
 
-  async getEmojis(guild_id: string) {
-    const { data: emojis } = await axios.get(
-      'http://localhost:5000/guild/emojis?guild_id=' + guild_id,
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }
-    );
-
-    return emojis;
-  }
-
   async getGuild(guild_id: string) {
     const guild = await axios.get(
       'http://localhost:5000/guilds?guild_id=' + guild_id,
@@ -161,7 +148,7 @@ export class ApiService {
     return guilds;
   }
 
-  async getUserGuildMember(guild_id: string) {    
+  async getUserGuildMember(guild_id: string) {
     const member = await axios.get(
       'https://discord.com/api/v8/users/@me/guilds/' + guild_id + '/member',
       {
@@ -177,6 +164,19 @@ export class ApiService {
     });
 
     return member;
+  }
+
+  async getEmojis(guild_id: string) {
+    const { data: emojis } = await axios.get(
+      'http://localhost:5000/guild/emojis?guild_id=' + guild_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+
+    return emojis;
   }
 
 }

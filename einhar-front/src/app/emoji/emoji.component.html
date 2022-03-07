@@ -1,1 +1,11 @@
-<p>emoji works!</p>
+<div class="card text-white bg-dark text-center" style="width: 18rem;">
+    {{emoji.name}}
+    <h5 class="card-header">
+        <img src="https://cdn.discordapp.com/emojis/{{emoji.id}}" width="50" class="rounded" height="50" alt="">
+    </h5>
+    <div class="card-body">
+        <p class="card-text text-center">Créer par : {{emoji.user.username}}</p>
+    </div>
+</div>
+
+

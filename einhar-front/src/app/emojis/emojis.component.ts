@@ -9,18 +9,18 @@ import { ApiService } from '../api.service';
 })
 export class EmojisComponent implements OnInit {
 
-  constructor(private api: ApiService, private router: Router) { }
-
+  emojis!: any;
   selectedServer!: any;
 
-  ngOnInit(): void {
+  constructor(private api: ApiService, private router: Router) { }
+
+  async ngOnInit(): Promise<void> {
     if (this.api.getIsLogged()) {
       this.selectedServer = this.api.getSelectedServer();
+      this.emojis = await this.api.getEmojis(this.selectedServer.id);
     }
     else {
       this.router.navigate(['/']);
     }
-
   }
-
 }
