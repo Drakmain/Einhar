@@ -148,7 +148,19 @@ export class ApiService {
     return emojis;
   }
 
+  async getGuildMembers(guild_id: string) {
+    const { data: members } = await axios.get(
+      'http://localhost:5000/guilds/members?guild_id=' + guild_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+
+    return members;
+  }
+
 }
 
 
-//test modif

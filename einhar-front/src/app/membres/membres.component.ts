@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-membres',
@@ -8,14 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class MembresComponent implements OnInit {
 
   //Faire component user.
-  nick!: string;
+  members!: any;
+  /*nick!: string;
   avatar!: string;
   joined_at!: Date;
-  roles!: string[];
+  roles!: string[];*/
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.members = await this.api.getGuildMembers(this.api.selectedServer);
+    console.log(this.members);
   }
 
 }

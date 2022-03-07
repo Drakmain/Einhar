@@ -64,7 +64,7 @@ app.get('/guilds/members', async (req, res) => {
         console.log(getDate() + " http://localhost:" + port + "/guilds/members Bad Request");
     }
     else {
-        let guildMembers = await undici.fetch("https://discord.com/api/guilds/" + guild_id + "/members", {
+        let guildMembers = await undici.fetch("https://discord.com/api/guilds/" + guild_id + "/members?limit=100", {
             method: 'GET',
             headers: {
                 'Authorization': 'Bot ' + process.env.BOT_TOKEN,

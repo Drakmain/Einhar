@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ElementRef} from '@angular/core';
+import { ApiService } from '../api.service';
+
 
 @Component({
   selector: 'app-membre',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembreComponent implements OnInit {
 
-  constructor() { }
+  @Input() member: any;
+  selectedServeur!: any;
 
-  ngOnInit(): void {
+  constructor(private api: ApiService) { }
+
+  async ngOnInit(): Promise<void> {
+    this.selectedServeur= await this.api.getSelectedServer();
   }
 
 }
