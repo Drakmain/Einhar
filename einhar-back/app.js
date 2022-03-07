@@ -56,12 +56,12 @@ app.get('/guilds', async (req, res) => {
     }
 });
 
-app.get('/guilds/members', async (req, res) => {
+app.get('/guild/members', async (req, res) => {
     const guild_id = req.query.guild_id;
 
     if (guild_id == undefined) {
         res.status(400).send("Bad Request");
-        console.log(getDate() + " Error: http://localhost:" + port + "/guilds/members Bad Request");
+        console.log(getDate() + " Error: http://localhost:" + port + "/guild/members Bad Request");
     }
     else {
         let guildMembers = await undici.fetch("https://discord.com/api/guilds/" + guild_id + "/members?limit=1000", {
@@ -95,42 +95,6 @@ app.get('/message/create', async (req, res) => {
             },
             body: JSON.stringify({
                 "content": "This is a message with components",
-                "components": [
-                    {
-                        "type": 1,
-                        "components": [
-                            {
-                                "type": 2,
-                                "label": "Click me!",
-                                "style": 1,
-                                "custom_id": "zecxs"
-                            },
-                            {
-                                "type": 2,
-                                "label": "Click me!",
-                                "style": 1,
-                                "custom_id": "sxcze"
-                            },
-                            {
-                                "type": 2,
-                                "label": "Click me!",
-                                "style": 1,
-                                "custom_id": "sscd",
-                                "emoji": {
-                                    "name": "1x",
-                                    "id": "949250681670357012"
-                                }
-                            },
-                            {
-                                "type": 2,
-                                "label": "Click me!",
-                                "style": 1,
-                                "custom_id": "zefc"
-                            },
-                        ]
-
-                    }
-                ]
             })
         });
 
@@ -210,12 +174,12 @@ app.get('/message/delete', async (req, res) => {
     }
 });
 
-app.get('/guilds/roles', async (req, res) => {
+app.get('/guild/roles', async (req, res) => {
     const guild_id = req.query.guild_id;
 
     if (guild_id == undefined) {
         res.status(400).send("Bad Request");
-        console.log(getDate() + " Error: http://localhost:" + port + "/guilds/roles Bad Request");
+        console.log(getDate() + " Error: http://localhost:" + port + "/guild/roles Bad Request");
     }
     else {
         let roles = await undici.fetch("https://discord.com/api/guilds/" + guild_id + "/roles", {
@@ -228,16 +192,16 @@ app.get('/guilds/roles', async (req, res) => {
         roles = await roles.json();
 
         res.status(200).send(roles);
-        console.log(getDate() + " http://localhost:" + port + "/guilds/roles OK " + guild_id);
+        console.log(getDate() + " http://localhost:" + port + "/guild/roles OK " + guild_id);
     }
 });
 
-app.get('/guilds/channels', async (req, res) => {
+app.get('/guild/channels', async (req, res) => {
     const guild_id = req.query.guild_id;
 
     if (guild_id == undefined) {
         res.status(400).send("Bad Request");
-        console.log(getDate() + " Error: http://localhost:" + port + "/guilds/channels Bad Request");
+        console.log(getDate() + " Error: http://localhost:" + port + "/guild/channels Bad Request");
     }
     else {
         let guildChannels = await undici.fetch("https://discord.com/api/guilds/" + guild_id + "/channels", {
@@ -250,7 +214,7 @@ app.get('/guilds/channels', async (req, res) => {
         guildChannels = await guildChannels.json();
 
         res.status(200).send(guildChannels);
-        console.log(getDate() + " http://localhost:" + port + "/guilds/channels OK");
+        console.log(getDate() + " http://localhost:" + port + "/guild/channels OK");
     }
 });
 

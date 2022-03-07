@@ -27,7 +27,9 @@ export class ServeurAdminComponent implements OnInit {
       if (this.guildInfo != 401) {
         this.isBot = true;
       }
+
     }
+    
   }
 
 }
