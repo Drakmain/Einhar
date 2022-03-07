@@ -15,7 +15,7 @@ export class MembreComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   async ngOnInit(): Promise<void> {
-    this.selectedServeur= await this.api.getSelectedServer();
+    this.selectedServeur = await this.api.getSelectedServer();
   }
 
 }
