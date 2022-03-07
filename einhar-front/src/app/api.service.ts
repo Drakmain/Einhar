@@ -179,4 +179,30 @@ export class ApiService {
     return emojis;
   }
 
+  async getChannelMessages(channel_id: string) {
+    const { data: emojis } = await axios.get(
+      'http://localhost:5000/channel/messages?channel_id=' + channel_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+
+    return emojis;
+  }
+
+  async getUserMessages(guild_id: string, user_id: string) {
+    const { data: emojis } = await axios.get(
+      'http://localhost:5000/guild/user/messages?guild_id=' + guild_id + "&user_id=" + user_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+
+    return emojis;
+  }
+
 }
