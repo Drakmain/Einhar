@@ -39,14 +39,14 @@ export class MembresComponent implements OnInit {
     else {
       this.router.navigate(['/']);
     }
-    
+
   }
 
   /**
    * Methode qui permet changer la bordure du membre selecionné
    * @param id l'id du membre selectionné
    */
-  changeBorder(id: any) {
+  async changeBorder(id: any) {
     for (let i = 0; i < Object.keys(this.members).length; i++) {
       this.tabMemeberActiveBorder.set(this.members[i].user.id, false);
     }
@@ -58,6 +58,7 @@ export class MembresComponent implements OnInit {
       }
     }
     this.api.setSelectedMember(this.selectedMember);
+    await this.api.getUserMessages(this.selectedServer.id, this.selectedMember.user.id)
   }
 
 }

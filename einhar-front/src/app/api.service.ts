@@ -44,7 +44,7 @@ export class ApiService {
     this.selectedMember = member;
   }
 
-  
+
 
   async authentification(code: any, error: string, error_description: string) {
 
@@ -198,6 +198,7 @@ export class ApiService {
         },
       }
     );
+
     return connections;
   }
 
