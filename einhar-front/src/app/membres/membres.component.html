@@ -12,17 +12,7 @@
             [isActiveBorder]="tabMemeberActiveBorder.get(member.user.id)" [member]="member"></app-membre>
         </div>
         <div class="col-9 overflow-auto">
-            <div class="card text-white bg-dark my-2 mx-2">
-                <h5 class="card-header">
-                    Oue
-                </h5>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Surnom :</li>
-                        <li class="list-group-item">A rejoint le :</li>
-                    </ul>
-                </div>
-            </div>
+            <app-message *ngFor="let message of messages" [message]="message"></app-message>
         </div>
     </div>
 
