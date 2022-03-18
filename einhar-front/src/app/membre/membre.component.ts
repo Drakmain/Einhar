@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../api.service';
 
 
@@ -10,6 +10,7 @@ import { ApiService } from '../api.service';
 export class MembreComponent implements OnInit {
 
   @Input() member: any;
+  @Input() isActiveBorder!: any;
 
   constructor(private api: ApiService) { }
 

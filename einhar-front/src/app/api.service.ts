@@ -12,6 +12,7 @@ export class ApiService {
   isLogged: boolean = false;
   token!: string;
   selectedServer!: string;
+  selectedMember!: string;
 
   constructor() { }
 
@@ -31,9 +32,19 @@ export class ApiService {
     return this.selectedServer;
   }
 
+  getSelectedMember() {
+    return this.selectedMember;
+  }
+
   setSelectedServer(server: any) {
     this.selectedServer = server;
   }
+
+  setSelectedMember(member: any) {
+    this.selectedMember = member;
+  }
+
+  
 
   async authentification(code: any, error: string, error_description: string) {
 

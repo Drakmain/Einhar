@@ -1,4 +1,4 @@
-<div class="card text-white bg-dark my-2 mx-2">
+<div [class.border-primary]="this.isActiveBorder == true" class="card text-white bg-dark my-2 mx-2">
     <h5 class="card-header">
         <img src="https://cdn.discordapp.com/avatars/{{member.user.id}}/{{member.user.avatar}}" width="30"
             class="rounded" height="30" alt=""> {{member.user.username}}
