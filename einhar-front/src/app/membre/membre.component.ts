@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef} from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { ApiService } from '../api.service';
 
 
@@ -10,12 +10,12 @@ import { ApiService } from '../api.service';
 export class MembreComponent implements OnInit {
 
   @Input() member: any;
-  selectedServeur!: any;
 
   constructor(private api: ApiService) { }
 
   async ngOnInit(): Promise<void> {
-    this.selectedServeur = await this.api.getSelectedServer();
+    this.member.joined_at = new Date(this.member.joined_at);
+    this.member.joined_at = this.member.joined_at.getUTCDay() + "/" + this.member.joined_at.getUTCMonth() + "/" + this.member.joined_at.getUTCFullYear();
   }
 
 }

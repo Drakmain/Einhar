@@ -3,3 +3,17 @@ body {
     background-color: #36393F;
     color: white;
 }
+
+.list-group-item{
+    background-color: #36393F; 
+    color: white;
+}
+
+.btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:visited {
+    background-color: #AA1B1A !important;
+    border-color: #AA1B1A;
+}
+
+.link-danger{
+    color: #AA1B1A;
+}

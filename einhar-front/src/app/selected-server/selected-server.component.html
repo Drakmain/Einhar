@@ -1,10 +1,10 @@
-<div *ngIf="this.selectedServer == null" class="container my-4">
+<div *ngIf="this.selectedServer == null" class="container my-3">
     <div class="alert alert-primary" role="alert">
-        Vous n'avez pas sélection de serveur dans l'onglet serveurs
+        Vous n'avez pas sélectionné de serveur dans l'onglet serveurs
     </div>
 </div>
 
-<div *ngIf="this.selectedServer != null" class="container text-center my-4">
+<div *ngIf="this.selectedServer != null" class="container my-3">
     <img src="https://cdn.discordapp.com/icons/{{ selectedServer.id }}/{{ selectedServer.icon }}.webp" width="30"
         class="rounded" height="30" alt=""> {{this.selectedServer.name}}
 </div>

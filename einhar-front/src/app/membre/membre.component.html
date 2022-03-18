@@ -1,9 +1,25 @@
-<div class="card text-white bg-dark text-center" style="width: 18rm;">
+<div class="card text-white bg-dark my-2 mx-2">
     <h5 class="card-header">
-        <img src="https://cdn.discordapp.com/avatars/{{member.user.id}}/{{member.user.avatar}}" width="50"
-            class="rounded" height="50" alt="">
+        <img src="https://cdn.discordapp.com/avatars/{{member.user.id}}/{{member.user.avatar}}" width="30"
+            class="rounded" height="30" alt=""> {{member.user.username}}
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#' + member.user.username" aria-expanded="false"
+            [attr.aria-controls]="member.user.username">
+            Infos
+        </button>
     </h5>
-    <div class="card-body">
-        <p class="card-text text-center">{{member.user.username}}</p>
+    <div class="collapse" id="{{member.user.username}}">
+        <div class="card-body">
+            <ul class="list-group list-group-flush my-2">
+                <li *ngIf="this.member.nick != undefined" class="list-group-item">Surnom : {{member.nick}}</li>
+                <li class="list-group-item">A rejoint le : {{member.joined_at}}</li>
+            </ul>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Roles : </li>
+                <li *ngFor="let role of member.roles" class="list-group-item">{{role}}</li>
+            </ul>
+        </div>
+
     </div>
+
 </div>

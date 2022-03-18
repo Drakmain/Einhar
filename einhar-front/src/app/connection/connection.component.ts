@@ -12,7 +12,7 @@ export class ConnectionComponent implements OnInit {
   logoConnectionDisplay!: String;
   urlLogoBattlenet: String = "https://pic.clubic.com/v1/images/1912347/raw.webp?fit=smartCrop&width=180&height=180&hash=65b8852d7332e1a48358dba2584ee10db3581695";
   urlLogoFacebook: String = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/640px-2021_Facebook_icon.svg.png";
-  urlLogoGitHub: String = "..\assets\GitHub-Mark-Light-32px.png";
+  urlLogoGitHub: String = "einhar-front/src/assets/GitHub-Mark-Light-32px.png";
   urlLogoPlayStation: String = "https://logo-marque.com/wp-content/uploads/2020/11/PlayStation-Embleme.png";
   urlLogoReddit: String = "https://www.elementaryos-fr.org/wp-content/uploads/2019/08/logo-reddit.png";
   urlLogoSpotify: String = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png";

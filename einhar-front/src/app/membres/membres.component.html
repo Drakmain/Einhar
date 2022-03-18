@@ -1,14 +1,28 @@
 <app-header></app-header>
 
-<h1 class="h1 text-center my-4">Membres</h1>
+<div class="container text-center">
 
-<app-selected-server [selectedServer]="selectedServer"></app-selected-server>
+    <h1 class="h1 my-4">Membres</h1>
 
-<div class="container d-flex justify-content-center">
-    <div class="row row-cols-4">
-        <div *ngFor="let member of members" class="container text-center my-3">
-            <app-membre [member]="member"></app-membre>
+    <app-selected-server [selectedServer]="selectedServer"></app-selected-server>
+
+    <div class="d-flex" style="height:70vh">
+        <div class="col-3 overflow-auto">
+            <app-membre *ngFor="let member of members" [member]="member"></app-membre>
+        </div>
+        <div class="col-9 overflow-auto">
+            <div class="card text-white bg-dark my-2 mx-2">
+                <h5 class="card-header">
+                    Oue
+                </h5>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Surnom :</li>
+                        <li class="list-group-item">A rejoint le :</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
+</div>

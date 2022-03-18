@@ -1,11 +1,13 @@
-<div [class.border-primary]="this.isActiveBorder == true" class="card text-white bg-dark">
+<div [class.border-primary]="this.isActiveBorder == true" class="card text-white bg-dark my-2">
     <h5 class="card-header">
         <img src="https://cdn.discordapp.com/icons/{{ guild.id }}/{{ guild.icon }}.webp" width="30" class="rounded"
             height="30" alt=""> {{ guild.name }}
     </h5>
     <div class="card-body">
         <p *ngIf="isBot == false && isAdmin == true" class="card-text">
-            Vous devez inviter le bot pour avoir plus d'informations sur ce serveur.
+            Vous devez inviter le bot pour avoir plus d'informations sur ce serveur. <a
+                href="https://discord.com/api/oauth2/authorize?client_id=875444482835886131&permissions=8&scope=bot"
+                class="link-danger">Invitez le bot</a>
         </p>
         <ul *ngIf="isBot == true && isAdmin == true" class="list-group list-group-flush">
             <li class="list-group-item">-Nombre de membres :

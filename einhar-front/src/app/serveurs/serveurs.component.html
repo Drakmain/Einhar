@@ -1,23 +1,19 @@
 <app-header></app-header>
 
-<div class="container text-center my-4">
-    <h1 class="h1">Serveurs</h1>
-</div>
+<div class="container text-center">
+    <h1 class="h1 my-4">Serveurs</h1>
 
-<div *ngFor="let guild of guilds_admin" class="container text-center my-3">
-    <app-serveur-admin (click)="changeBorder(guild.id)" [isActiveBorder]="tabServerActiveBorder.get(guild.id)"
-        [guild]="guild"></app-serveur-admin>
-</div>
+    <p>Pour acceder aux informations des serveurs vous devez avoir les
+        droits administrateur et le bot
+        Einhar doit y etre invité.</p>
 
-<h2 class="text-center">Autre serveurs</h2>
-<p class="text-center">
-    Vous n'avez pas les droits pour avoir les informations de ce serveur.
-</p>
+    <app-serveur-admin *ngFor="let guild of guilds_admin" (click)="changeBorder(guild.id)"
+        [isActiveBorder]="tabServerActiveBorder.get(guild.id)" [guild]="guild"></app-serveur-admin>
 
-<div class="container d-flex justify-content-center">
-    <div class="row row-cols-4">
-        <div *ngFor="let guild of guilds" class="container text-center my-3">
-            <app-serveur [guild]="guild"></app-serveur>
-        </div>
+    <h2>Autre serveurs</h2>
+    <p>Vous n'avez pas les droits pour avoir les informations de ces serveurs.</p>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <app-serveur *ngFor="let guild of guilds" [guild]="guild"></app-serveur>
     </div>
 </div>

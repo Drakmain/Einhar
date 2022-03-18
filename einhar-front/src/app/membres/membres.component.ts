@@ -19,11 +19,11 @@ export class MembresComponent implements OnInit {
     if (this.api.getIsLogged()) {
       this.selectedServer = this.api.getSelectedServer();
       this.members = await this.api.getGuildMembers(this.selectedServer.id);
-      console.log("Membre " + this.members);
     }
     else {
       this.router.navigate(['/']);
     }
+    
   }
 
 }

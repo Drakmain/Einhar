@@ -1,9 +1,10 @@
-<div class="card text-white bg-dark text-center" style="width: 18rem;">
-    {{emoji.name}}
-    <h5 class="card-header">
+<div class="card text-white bg-dark col" style="width: 18rem;">
+    
+    <div class="card-header">
+        <h5 class="card-title">{{emoji.name}}</h5>
         <img src="https://cdn.discordapp.com/emojis/{{emoji.id}}" width="50" class="rounded" height="50" alt="">
-    </h5>
+    </div>
     <div class="card-body">
-        <p class="card-text text-center">Créer par : {{emoji.user.username}}</p>
+        <p class="card-text">Créer par : {{emoji.user.username}}</p>
     </div>
 </div>
