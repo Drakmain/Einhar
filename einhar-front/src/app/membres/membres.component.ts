@@ -13,6 +13,7 @@ export class MembresComponent implements OnInit {
   selectedMember!: any;
   members!: any;
   tabMemeberActiveBorder = new Map<any, boolean>();
+  messages!: any;
 
   constructor(private api: ApiService, private router: Router) { }
 
@@ -35,10 +36,13 @@ export class MembresComponent implements OnInit {
           }
         }
       }
+
     }
+
     else {
       this.router.navigate(['/']);
     }
+
     
   }
 
@@ -58,6 +62,9 @@ export class MembresComponent implements OnInit {
       }
     }
     this.api.setSelectedMember(this.selectedMember);
+    this.messages = this.api.getUserMessages(this.selectedServer.id, this.selectedMember.user.id);
+    console.log(this.messages);
   }
+
 
 }

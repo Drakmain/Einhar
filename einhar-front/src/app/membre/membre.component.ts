@@ -17,6 +17,7 @@ export class MembreComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.member.joined_at = new Date(this.member.joined_at);
     this.member.joined_at = this.member.joined_at.getUTCDay() + "/" + this.member.joined_at.getUTCMonth() + "/" + this.member.joined_at.getUTCFullYear();
+    
   }
 
 }
