@@ -59,5 +59,6 @@ export class MembresComponent implements OnInit {
     }
     this.api.setSelectedMember(this.selectedMember);
     this.messages = await this.api.getUserMessages(this.selectedServer.id, this.selectedMember.user.id);
+    console.log(this.selectedMember.user.username);
   }
 }

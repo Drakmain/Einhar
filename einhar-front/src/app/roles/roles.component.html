@@ -5,6 +5,10 @@
     <h1 class="h1 my-4">Roles</h1>
 
     <app-selected-server [selectedServer]="selectedServer"></app-selected-server>
+    
+    <div *ngIf='!roles && selectedServer' class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <app-role *ngFor="let role of roles" [role]="role"></app-role>

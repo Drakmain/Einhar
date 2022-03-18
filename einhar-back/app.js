@@ -271,6 +271,8 @@ app.get('/guild/user/messages', async (req, res) => {
 
             channelMessages = await channelMessages.json();
 
+            channelMessages = channelMessages.filter(m => m.author.id == user_id);
+
             allChannelMessages = allChannelMessages.concat(channelMessages);
         }
 

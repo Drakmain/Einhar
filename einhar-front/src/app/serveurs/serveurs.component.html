@@ -7,11 +7,20 @@
         droits administrateur et le bot
         Einhar doit y etre invité.</p>
 
+
+    <div *ngIf='!guilds_admin' class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+
     <app-serveur-admin *ngFor="let guild of guilds_admin" (click)="changeBorder(guild.id)"
         [isActiveBorder]="tabServerActiveBorder.get(guild.id)" [guild]="guild"></app-serveur-admin>
 
     <h2>Autres serveurs</h2>
     <p>Vous n'avez pas les droits pour avoir les informations de ces serveurs.</p>
+
+    <div *ngIf='!guilds' class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <app-serveur *ngFor="let guild of guilds" [guild]="guild"></app-serveur>
