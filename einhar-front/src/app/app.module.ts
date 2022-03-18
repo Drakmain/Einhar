@@ -20,6 +20,7 @@ import { RoleComponent } from './role/role.component';
 import { SelectedServerComponent } from './selected-server/selected-server.component';
 import { ConnectionsComponent } from './connections/connections.component';
 import { ConnectionComponent } from './connection/connection.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ConnectionComponent } from './connection/connection.component';
     SelectedServerComponent,
     ConnectionsComponent,
     ConnectionComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
