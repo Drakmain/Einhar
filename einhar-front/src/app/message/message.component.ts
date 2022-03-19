@@ -8,11 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MessageComponent implements OnInit {
 
   @Input() message: any;
+  @Input() isFromSalons: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.message)
+
   }
 
 }

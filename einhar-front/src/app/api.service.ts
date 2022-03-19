@@ -13,6 +13,7 @@ export class ApiService {
   token!: string;
   selectedServer!: string;
   selectedMember!: string;
+  selectedChannel!: string;
 
   constructor() { }
 
@@ -36,12 +37,20 @@ export class ApiService {
     return this.selectedMember;
   }
 
+  getSelectedChannel() {
+    return this.selectedChannel;
+  }
+
   setSelectedServer(server: any) {
     this.selectedServer = server;
   }
 
   setSelectedMember(member: any) {
     this.selectedMember = member;
+  }
+
+  setSelectedChannel(channel: any) {
+    this.selectedChannel = channel;
   }
 
 

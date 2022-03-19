@@ -1,4 +1,8 @@
 <div class="card text-white bg-dark my-2 mx-2">
+    <div *ngIf='isFromSalons == true' class="card-header">
+        <img src="https://cdn.discordapp.com/avatars/{{message.author.id}}/{{message.author.avatar}}" width="30"
+            class="rounded" height="30" alt=""> {{message.author.username}}
+    </div>
     <div *ngIf='message.content != ""' class="card-body">
         {{message.content}}
     </div>

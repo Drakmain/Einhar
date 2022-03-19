@@ -8,14 +8,16 @@
 
     <div class="d-flex" style="height:70vh">
         <div class="col-3 overflow-auto">
-            <div *ngIf='!members && selectedServer' class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <div *ngIf='!members && selectedServer' class="spinner-border" style="width: 3rem; height: 3rem;"
+                role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
             <app-membre *ngFor="let member of members" (click)="changeBorder(member.user.id)"
-                [isActiveBorder]="tabMemeberActiveBorder.get(member.user.id)" [member]="member"></app-membre>
+                [isActiveBorder]="tabMemberActiveBorder.get(member.user.id)" [member]="member"></app-membre>
         </div>
         <div class="col-9 overflow-auto">
-            <div *ngIf='!messages && selectedMember' class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <div *ngIf='!messages && selectedMember' class="spinner-border" style="width: 3rem; height: 3rem;"
+                role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
             <app-message *ngFor="let message of messages" [message]="message"></app-message>

@@ -12,7 +12,7 @@ export class MembresComponent implements OnInit {
   selectedServer!: any;
   selectedMember!: any;
   members!: any;
-  tabMemeberActiveBorder = new Map<any, boolean>();
+  tabMemberActiveBorder = new Map<any, boolean>();
   messages!: any;
 
   constructor(private api: ApiService, private router: Router) { }
@@ -26,13 +26,13 @@ export class MembresComponent implements OnInit {
 
       if (this.selectedMember === undefined) {
         for (let i = 0; i < Object.keys(this.members).length; i++) {
-          this.tabMemeberActiveBorder.set(this.members[i].user.id, false);
+          this.tabMemberActiveBorder.set(this.members[i].user.id, false);
         }
       }
       else {
         for (let i = 0; i < Object.keys(this.members).length; i++) {
           if (this.members[i].user.id === this.selectedMember.user.id) {
-            this.tabMemeberActiveBorder.set(this.members[i].user.id, true);
+            this.tabMemberActiveBorder.set(this.members[i].user.id, true);
           }
         }
       }
@@ -48,12 +48,12 @@ export class MembresComponent implements OnInit {
    */
   async changeBorder(id: any) {
     for (let i = 0; i < Object.keys(this.members).length; i++) {
-      this.tabMemeberActiveBorder.set(this.members[i].user.id, false);
+      this.tabMemberActiveBorder.set(this.members[i].user.id, false);
     }
 
     for (let i = 0; i < Object.keys(this.members).length; i++) {
       if (this.members[i].user.id === id) {
-        this.tabMemeberActiveBorder.set(this.members[i].user.id, true);
+        this.tabMemberActiveBorder.set(this.members[i].user.id, true);
         this.selectedMember = this.members[i];
       }
     }
