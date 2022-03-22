@@ -10,10 +10,12 @@ import { ApiService } from '../api.service';
 export class SalonsComponent implements OnInit {
 
   selectedServer!: any;
-  selectedChannel!: any;
+  selectedChannel: any = undefined;
   channels!: any;
   tabChannelActiveBorder = new Map<any, boolean>();
   messages!: any;
+  selectedChannelTopic!: string;
+  messagesLength!: number;
 
   constructor(private api: ApiService, private router: Router) { }
 
@@ -34,6 +36,7 @@ export class SalonsComponent implements OnInit {
             this.tabChannelActiveBorder.set(this.channels[i].id, true);
           }
         }
+        this.messages = await this.api.getChannelMessages(this.selectedChannel.id);
       }
     }
     else {
@@ -43,10 +46,10 @@ export class SalonsComponent implements OnInit {
   }
 
   /**
-   * Methode qui permet changer la bordure du membre selecionné
-   * @param id l'id du membre selectionné
+   * Methode qui permet changer la bordure du salon selecionné
+   * @param id l'id du salon selectionné
    */
-  async changeBorder(id: any) {
+  async changeBorder(id: string) {
     for (let i = 0; i < Object.keys(this.channels).length; i++) {
       this.tabChannelActiveBorder.set(this.channels[i].id, false);
     }
@@ -58,6 +61,12 @@ export class SalonsComponent implements OnInit {
       }
     }
     this.api.setSelectedChannel(this.selectedChannel);
+    this.messages = await this.api.getChannelMessages(this.selectedChannel.id);
+    this.selectedChannelTopic = this.selectedChannel.topic;
+    this.messagesLength = this.messages.length;
+  }
+
+  async updateMessages(){
     this.messages = await this.api.getChannelMessages(this.selectedChannel.id);
   }
 

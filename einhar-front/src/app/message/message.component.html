@@ -1,4 +1,4 @@
-<div class="card text-white bg-dark my-2 mx-2">
+<div *ngIf="message.type == 0" class="card text-white bg-dark my-2 mx-2">
     <div *ngIf='isFromSalons == true' class="card-header">
         <img src="https://cdn.discordapp.com/avatars/{{message.author.id}}/{{message.author.avatar}}" width="30"
             class="rounded" height="30" alt=""> {{message.author.username}}
@@ -8,11 +8,91 @@
     </div>
     <div *ngIf='message.attachments != ""' class="card-body">
         <ul class="list-group list-group-flush">
-            <li *ngFor="let attachment of message.attachments" class="list-group-item">{{attachment.url}} <br>
-                {{attachment.filename}}</li>
+            <li *ngFor="let attachment of message.attachments" class="list-group-item">
+                <a href="#" class="link-primary">{{attachment.url}}</a>
+                <br>
+                {{attachment.filename}}
+            </li>
         </ul>
     </div>
-    <div class="card-footer text-muted">
+    <div class="card-footer text-muted d-flex justify-content-between">
         {{message.timestamp}}
+        <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                ...
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteMessageModal">Supprimer</a>
+                </li>
+                <li><a [class.disabled]="this.message.pinned" class="dropdown-item" data-bs-toggle="modal"
+                        data-bs-target="#pinMessageModal">Epingler</a></li>
+                <li><a [class.disabled]="!this.message.pinned" class="dropdown-item" data-bs-toggle="modal"
+                        data-bs-target="#unpinMessageModal">Désépingler</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteMessageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Supprimer le message</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment supprimer ce message ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="onDeleteMessage()"
+                    data-bs-dismiss="modal">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="pinMessageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Epingler le message</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment epingler ce message ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="onPinMessage()"
+                    data-bs-dismiss="modal">Epingler</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="unpinMessageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Désépingler le message</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment désépingler ce message ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="onUnpinMessage()"
+                    data-bs-dismiss="modal">Désépingler</button>
+            </div>
+        </div>
     </div>
 </div>

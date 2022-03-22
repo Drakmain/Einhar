@@ -250,4 +250,40 @@ export class ApiService {
     return channels;
   }
 
+  async deleteUserMessage(channel_id: string, message_id: string) {
+    const res = await axios.get(
+      'http://localhost:5000/message/delete?channel_id=' + channel_id + "&message_id=" + message_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+  }
+
+  async pinMessage(channel_id: string, message_id: string) {
+    const res = await axios.get(
+      'http://localhost:5000/channel/message/pin?channel_id=' + channel_id + "&message_id=" + message_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+
+    console.log(res);
+  }
+
+  async unpinMessage(channel_id: string, message_id: string) {
+    const res = await axios.get(
+      'http://localhost:5000/channel/message/unpin?channel_id=' + channel_id + "&message_id=" + message_id,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }
+    );
+    console.log(res);
+  }
+
 }

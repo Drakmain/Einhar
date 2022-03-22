@@ -17,3 +17,17 @@ body {
 .link-danger{
     color: #AA1B1A;
 }
+
+.modal-header, .modal-footer{
+    background-color: #2F3136;
+    color: white;
+}
+
+.modal-content{
+    background-color: #36393F; 
+    color: white;
+}
+
+a.disabled {
+    pointer-events: none;
+}

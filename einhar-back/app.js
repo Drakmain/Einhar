@@ -154,9 +154,7 @@ app.get('/message/delete', async (req, res) => {
                 'Authorization': 'Bot ' + process.env.BOT_TOKEN,
             },
         });
-
-        result = await result.json();
-
+    
         if (result.code == 10008) {
             res.status(404).send("Unknown Message : " + message_id);
             console.log(getDate() + " Error: http://localhost:" + port + "/message/delete Unknown Message " + message_id);
@@ -167,7 +165,7 @@ app.get('/message/delete', async (req, res) => {
         }
         else {
             res.status(200).send(result);
-            console.log(getDate() + " http://localhost:" + port + "/message/delete OK channel_id: " + channel_id + ", message_id" + message_id);
+            console.log(getDate() + " http://localhost:" + port + "/message/delete OK channel_id: " + channel_id + ", message_id " + message_id);
         }
     }
 });
@@ -232,8 +230,6 @@ app.get('/channel/messages', async (req, res) => {
         });
 
         channelMessages = await channelMessages.json();
-
-        console.log(channelMessages.filter(c => c.author.username == "Drakmain"));
 
         res.status(200).send(channelMessages);
         console.log(getDate() + " http://localhost:" + port + "/channels/messages OK channel_id: " + channel_id);
@@ -300,6 +296,70 @@ app.get('/guild/emojis', async (req, res) => {
 
         res.status(200).send(emojis);
         console.log(getDate() + " http://localhost:" + port + "/guild/emojis OK guild_id: " + guild_id);
+    }
+});
+
+app.get('/channel/message/pin', async (req, res) => {
+    const message_id = req.query.message_id;
+    const channel_id = req.query.channel_id;
+
+    if (message_id == undefined || channel_id == undefined) {
+        res.status(400).send("Bad Request");
+        console.log(getDate() + " Error: http://localhost:" + port + "/channel/message/pin Bad Request");
+    }
+    else {
+        let result = await undici.fetch("https://discord.com/api/channels/" + channel_id + "/pins/" + message_id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bot ' + process.env.BOT_TOKEN,
+            },
+        });
+
+        if (result.code == 10008) {
+            res.status(401).send("Unknown Message : " + message_id);
+            console.log(getDate() + " Error: http://localhost:" + port + "/channel/message/pin Unknown Message : " + message_id);
+        }
+        else if (result.code == 10003) {
+            res.status(401).send("Unknown Channel : " + channel_id);
+            console.log(getDate() + " Error: http://localhost:" + port + "/channel/message/pin Unknown Channel : " + channel_id);
+        }
+        else {
+            res.status(200).send(result);
+            console.log(getDate() + " http://localhost:" + port + "/channel/message/pin OK message_id: " + message_id + ", channel_id: " + channel_id);
+        }
+    }
+});
+
+app.get('/channel/message/unpin', async (req, res) => {
+    const message_id = req.query.message_id;
+    const channel_id = req.query.channel_id;
+
+    if (message_id == undefined || channel_id == undefined) {
+        res.status(400).send("Bad Request");
+        console.log(getDate() + " Error: http://localhost:" + port + "/channel/message/unpin Bad Request");
+    }
+    else {
+        let result = await undici.fetch("https://discord.com/api/channels/" + channel_id + "/pins/" + message_id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bot ' + process.env.BOT_TOKEN,
+            },
+        });
+
+        if (result.code == 10008) {
+            res.status(401).send("Unknown Message : " + message_id);
+            console.log(getDate() + " Error: http://localhost:" + port + "/channel/message/unpin Unknown Message : " + message_id);
+        }
+        else if (result.code == 10003) {
+            res.status(401).send("Unknown Channel : " + channel_id);
+            console.log(getDate() + " Error: http://localhost:" + port + "/channel/message/unpin Unknown Channel : " + channel_id);
+        }
+        else {
+            res.status(200).send(result);
+            console.log(getDate() + " http://localhost:" + port + "/channel/message/unpin OK message_id: " + message_id + ", channel_id: " + channel_id);
+        }
     }
 });
 

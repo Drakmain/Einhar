@@ -8,6 +8,7 @@
 
     <div class="d-flex" style="height:70vh">
         <div class="col-3 overflow-auto">
+
             <div *ngIf='!members && selectedServer' class="spinner-border" style="width: 3rem; height: 3rem;"
                 role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -16,11 +17,13 @@
                 [isActiveBorder]="tabMemberActiveBorder.get(member.user.id)" [member]="member"></app-membre>
         </div>
         <div class="col-9 overflow-auto">
+            <p *ngIf="messagesLength">Nombre de message : {{this.messagesLength}}</p>
             <div *ngIf='!messages && selectedMember' class="spinner-border" style="width: 3rem; height: 3rem;"
                 role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-            <app-message *ngFor="let message of messages" [message]="message"></app-message>
+            <app-message *ngFor="let message of messages" [message]="message" (updateMessages)="updateMessages()">
+            </app-message>
         </div>
     </div>
 

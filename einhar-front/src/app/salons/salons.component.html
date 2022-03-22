@@ -4,22 +4,26 @@
     <h1 class="h1 my-4">Salons</h1>
 
     <app-selected-server [selectedServer]="selectedServer"></app-selected-server>
-</div>
 
-<div class="d-flex" style="height:70vh">
-    <div class="col-3 overflow-auto">
-        <div *ngIf='!channels && selectedServer' class="spinner-border" style="width: 3rem; height: 3rem;"
-            role="status">
-            <span class="visually-hidden">Loading...</span>
+
+    <div class="d-flex" style="height:70vh">
+        <div class="col-3 overflow-auto">
+            <div *ngIf='!channels && selectedServer' class="spinner-border" style="width: 3rem; height: 3rem;"
+                role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <app-salon *ngFor="let channel of channels" (click)="changeBorder(channel.id)"
+                [isActiveBorder]="tabChannelActiveBorder.get(channel.id)" [channel]="channel"></app-salon>
         </div>
-        <app-salon *ngFor="let channel of channels" (click)="changeBorder(channel.id)"
-            [isActiveBorder]="tabChannelActiveBorder.get(channel.id)" [channel]="channel"></app-salon>
-    </div>
-    <div class="col-9 overflow-auto">
-        <div *ngIf='!messages && selectedChannel' class="spinner-border" style="width: 3rem; height: 3rem;"
-            role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div class="col-9 overflow-auto">
+            <p *ngIf="messagesLength">Nombre de message : {{this.messagesLength}}</p>
+            <p *ngIf="selectedChannelTopic">Sujet : {{this.selectedChannelTopic}}</p>
+            <div *ngIf='!messages && selectedChannel' class="spinner-border" style="width: 3rem; height: 3rem;"
+                role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <app-message *ngFor="let message of messages" [message]="message" (updateMessages)="updateMessages()"
+                [isFromSalons]="true"></app-message>
         </div>
-        <app-message *ngFor="let message of messages" [message]="message" [isFromSalons]="true"></app-message>
     </div>
 </div>

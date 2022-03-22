@@ -14,6 +14,7 @@ export class MembresComponent implements OnInit {
   members!: any;
   tabMemberActiveBorder = new Map<any, boolean>();
   messages!: any;
+  messagesLength!: number;
 
   constructor(private api: ApiService, private router: Router) { }
 
@@ -35,6 +36,7 @@ export class MembresComponent implements OnInit {
             this.tabMemberActiveBorder.set(this.members[i].user.id, true);
           }
         }
+        this.messages = await this.api.getUserMessages(this.selectedServer.id, this.selectedMember.user.id);
       }
     }
     else {
@@ -46,7 +48,7 @@ export class MembresComponent implements OnInit {
    * Methode qui permet changer la bordure du membre selecionné
    * @param id l'id du membre selectionné
    */
-  async changeBorder(id: any) {
+  async changeBorder(id: string) {
     for (let i = 0; i < Object.keys(this.members).length; i++) {
       this.tabMemberActiveBorder.set(this.members[i].user.id, false);
     }
@@ -59,6 +61,10 @@ export class MembresComponent implements OnInit {
     }
     this.api.setSelectedMember(this.selectedMember);
     this.messages = await this.api.getUserMessages(this.selectedServer.id, this.selectedMember.user.id);
-    console.log(this.selectedMember.user.username);
+    this.messagesLength = this.messages.length;
+  }
+
+  async updateMessages() {
+    this.messages = await this.api.getUserMessages(this.selectedServer.id, this.selectedMember.user.id);
   }
 }
