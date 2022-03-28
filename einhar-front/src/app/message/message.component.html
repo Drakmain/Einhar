@@ -23,76 +23,12 @@
                 ...
             </button>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteMessageModal">Supprimer</a>
+                <li><a class="dropdown-item" (click)="onDeleteMessage()">Supprimer</a></li>
+                <li><a [class.disabled]="this.message.pinned" class="dropdown-item" (click)="onPinMessage()">Epingler</a>
                 </li>
-                <li><a [class.disabled]="this.message.pinned" class="dropdown-item" data-bs-toggle="modal"
-                        data-bs-target="#pinMessageModal">Epingler</a></li>
-                <li><a [class.disabled]="!this.message.pinned" class="dropdown-item" data-bs-toggle="modal"
-                        data-bs-target="#unpinMessageModal">Désépingler</a></li>
+                <li><a [class.disabled]="!this.message.pinned" class="dropdown-item"
+                        (click)="onUnpinMessage()">Désépingler</a></li>
             </ul>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="deleteMessageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Supprimer le message</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Voulez-vous vraiment supprimer ce message ?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary btn-sm" (click)="onDeleteMessage()"
-                    data-bs-dismiss="modal">Supprimer</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="pinMessageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Epingler le message</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Voulez-vous vraiment epingler ce message ?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary btn-sm" (click)="onPinMessage()"
-                    data-bs-dismiss="modal">Epingler</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="unpinMessageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Désépingler le message</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Voulez-vous vraiment désépingler ce message ?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary btn-sm" (click)="onUnpinMessage()"
-                    data-bs-dismiss="modal">Désépingler</button>
-            </div>
         </div>
     </div>
 </div>
