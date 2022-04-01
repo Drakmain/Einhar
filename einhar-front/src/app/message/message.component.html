@@ -9,7 +9,7 @@
     <div *ngIf='message.attachments != ""' class="card-body">
         <ul class="list-group list-group-flush">
             <li *ngFor="let attachment of message.attachments" class="list-group-item">
-                <a href="#" class="link-primary">{{attachment.url}}</a>
+                <a href=">{{attachment.url}}" class="link-primary">{{attachment.url}}</a>
                 <br>
                 {{attachment.filename}}
             </li>
